@@ -27,5 +27,13 @@ Os dados utilizados foram baixados do site [Brasil.io](https://brasil.io/dataset
 Uma observação muito importante: esses dados foram baixados no dia 21/06/2021, e portanto toda a análise aqui feita está atrasada em duas semanas. Preferi manter assim, e posteriormente fazer uma análise com dados atualizados em outro projeto, pois o objetivo principal desse projeto é explorar as ferramentas de análise de séries temporais. Em um projeto futuro, poderemos comparar as previsões e conclusões feitas aqui, e confrontá-las com a realidade. 
 
 ## Análise usando Prophet
-Como dito, o projeto foi dividido em dois notebooks principais. Nesse primeiro notebook, foi feita uma análise exploratória dos dados de covid no Ceará e logo em seguida, previsões usando o Prophet. Em termos técnicos, os resultados não foram animadores, haja vista que, no geral, os modelos tiveram péssimas métricas de avaliação com respeito aos dados de teste. Já as métricas dos dados de treino foram ótimas, o que aponta para um overfitting do modelo aos dados de treino. Nesse notebook foi feita uma análise dos hiperparâmetros, a fim de se encontrar os valores que retornariam os melhores r2-scores. 
+Como dito, o projeto foi dividido em dois notebooks principais. Nesse primeiro notebook, foi feita uma análise exploratória dos dados de covid no Ceará e logo em seguida, previsões usando o Prophet. Em termos técnicos, os resultados não foram animadores, haja vista que, no geral, os modelos tiveram péssimas métricas de avaliação com respeito aos dados de teste. Já as métricas dos dados de treino foram ótimas, o que aponta para um overfitting do modelo aos dados de treino. Nesse notebook foi feita uma análise dos hiperparâmetros, a fim de se encontrar os valores que retornariam os melhores r2-scores. Para os casos novos, óbitos novos e suas médias móveis, não foram encontrados bons hiperparâmetros que retornassem boas métricas.
+No entanto, é necessário entender porque o modelo não estava prevendo bem os dados de teste e a resposta era visualmente clara: os dados iniciaram uma tendência de queda que ia na contra-mão das previsões, que apontavam para uma continuação da tendência de alta. Veja nesse gráfico:
+![médias móveis casos novos](![image](https://user-images.githubusercontent.com/83500922/124401014-0c87e000-dcfd-11eb-95d9-0b016dfe6046.png)
+)
+
+Então, no sentido social, digamos assim, isso foi um bom resultado. Veja, por exemplo, este gráfico:
+
+![modelo prhophet - média movel casos novos](![image](https://user-images.githubusercontent.com/83500922/124401046-57a1f300-dcfd-11eb-838f-8ddc8f7d314d.png)
+)
 
