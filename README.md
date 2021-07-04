@@ -10,7 +10,7 @@ O objetivo desse módulo foi conhecer mais sobre séries temporais. Foi apresent
 - Feriados e sazonalidade
 - Outliers e validação
 
-# O projeto: Covid no Ceará - onde vai? 
+# O projeto: Covid no Ceará - Um estudo de séries temporais 
 ## Introdução
 
 O objetivo desse projeto é fazer uma análise de séries temporais relacionadas aos casos de covid no estado do Ceará. As séries analizadas (bem como algumas médias móveis) serão:
@@ -60,4 +60,96 @@ Mas ao contrário do que aconteceu com os casos novos, os picos de óbitos novos
 
 Isso é visível pelos gráficos dos valores absolutos. No entanto, essa queda pode ter sido breve, visto que podemos estar vivenciando um novo período de aumento. É preciso observar os dados das próximas semanas. 
 Mas a queda recente é inegável e inesperada, em termos puramente de dados brutos: os modelos preditivos do Prophet não foram capazes de prever essa queda repentina. De acordo com os modelos, era de se esperar que a tendência de aumento vivenciada até seis semanas atrás continuasse. 
+
+## Análise de tendências e pontos de virada
+Nesse outro notebook realizamos um estudo sobre tendências e pontos de virada em séries temporais.
+
+Grosso modo, podemos dizer que uma série temporal apresenta três grandes padrões de tendência, bem autoexplicativos:
+- Tendência de alta
+- Tendência de baixa
+- Tendência estacionária ou lateralizada
+
+Obviamente, estando em qualquer uma dessas tendências, a série pode oscilar para cima ou para baixo. A esse fenômeno chamamos de volatilidade. Existem séries temporais mais voláteis, outras menos voláteis. E existem métricas ou indicadores que mensuram a volatilidade.
+
+É claro também que a tendência de uma série depende da janela de tempo que estamos considerando. Como dito acima, cada ciclo de alta/baixa/lateralização é formada por ciclos menores. Em uma janela de tempo de um mês, por exemplo, podemos observar uma tendência de baixa, enquanto que se considerarmos a série anualmente, ela está em tendência de alta. 
+
+Independente disso, reversões de tendência ocorrem, e podemos utilizar alguns sinais para saber (com certa precisão, em geral atrasada) quando ocorrem. Esses momentos onde temos uma mudança da tendência chamamos de pontos de virada (*change points*). 
+
+Utilizamos três ferramentas na identificação de tendências:
+
+### Derivada (discreta)
+
+A derivada é um conceito do cálculo diferencial. Grosso modo, é uma função que mede a taxa de variação de outra função. No caso de séries temporais, por estarmos lidando com dados discretos, esse conceito não se aplica ***ipsis litteris***. No entanto, o conceito de taxa de variação média é conhecido, e isso é apenas outro nome para a chamada derivada discreta. 
+
+Em cálculo diferencial, é conhecido o seguinte resultado: pontos de máximo e mínimo locais tem derivada nula. Sabemos também que, com hipóteses razoáveis sobre a função, em pontos de máximo e mínimo temos reversão de tendência (crescente para decrescente ou vice-versa). 
+
+Então faz sentido utilizar algo semelhante para estimar a localização de pontos de virada em séries temporais. O resultado é algo assim:
+
+![derivada e pontos de virada](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/raw/main/imagens/mm28_casos_novos_pv.jpg)
+
+As linhas pontilhadas verticais indicam pontos de virada (nessa abordagem, pontos onde a segunda derivada discreta inverte de sinal). Mais detalhes no notebook.
+
+**Indicador SuperTrend**
+
+Utilizado no mercado de ações, esse é um indicador do tipo bandas. Ele acompanha a tendência geral de uma série temporal, mas estabelece bandas inferior e superior, que podem ser intepretadas como suporte e resistência. Se a série cruza uma banda superior para cima, ele rompe a resistência e o que se espera é que entre em tendência de alta. Por outro lado, se a série cruza a banda inferior para baixo, espera-se uma tendência de baixa.
+
+Nesse projeto, vamos adaptar esse indicador para as séries que temos. O resultado é algo assim:
+
+![supertrend dos casos acumulados](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/raw/main/imagens/supertend_casos_acumulados.jpg)
+
+Nesse gráfico, podemos considerar como pontos de virado os pontos onde a série (em azul) toca a banda superior (em vermelho). Mais detalhes no notebook.
+
+**Cruzamento de médias móveis**
+
+Médias móveis são um tipo de indicador seguidor de tendência. Como o próprio nome diz, elas acompanham a série temporal, tentando mensurar a tendência geral da mesma. Mas as médias móveis podem ter diferentes períodos. Aquelas com períodos mais curtos tendem a ter maior volatilidade, sendo bem próximas da série original. Já as de período mais longo tendem a ser mais suaves, ditanto uma tendência de longo prazo da série. 
+Médias móveis mais curtas são mais sensíveis a mudanças de tendência. Séries longas são menos sensíveis e só revertem quando a mudança de tendência é realmente forte. 
+A mágica acontece quando elas se cruzam. A leitura é a seguinte:
+- Média curta cruzando a média longa para cima ---> indicação de início de tendência de alta.
+- Média curta cruzando a média longa para baixo ---> indicação de início de tendência de baixa.
+
+O resultado é algo assim:
+
+![cruzamento de médias móveis](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/raw/main/imagens/cruzar_mm_casos_novos.jpg)
+
+As linhas pontilhadas verticais indicam pontos onde a média móvel curta cruzou a média móvel longa para cima (tendência de alta) e as linhas pontilhadas verticais avermelhadas indicam pontos onde a média móvel curta cruzou a média móvel longa para baixo (tendência de baixa).
+
+
+Além disso, exploramos também as **aproximações poligonais**. É uma maneira bem visual de ver os pontos de virada. Após identificar esses pontos no gráfico da série temporal, ligamos esses pontos por linhas retas. O resultado é algo assim:
+
+![aproximação poligonal - casos novos de covid](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/raw/main/imagens/aprox_poligonal_casos_novos.jpg)
+
+A inclinação dessas retas pode ser uma forma de mensurar a taxa de crescimento (ou decrescimento) entre dois pontos de virada. 
+
+## Conclusão final e projetos futuros
+O principal ponto observado ao longo desse trabalho, e que foi confirmado pelas análise é esse:
+
+**Os casos novos diários e óbitos novos diários de covid no estado do Ceará estão em tendência de queda, quebrando uma forte onda de alta.** 
+
+(Sempre lembrando que os dados são de 2 semanas atrás)
+
+Hipóteses levantadas:
+- Consequência da campanha de vacinação, que está avançando rápido no estado.
+- Dados incompletos. 
+
+Nenhuma dessas hipóteses foi testada nesse projeto, mas poderá ser tema de estudos futuros. 
+
+
+Outros temas relacionados que podem vir a ser trabalhados em futuros projetos:
+- Analisar o impacto das medidas de isolamento social nos casos novos diários. 
+- Desenvolver um projeto contínuo de análise e previsão de novos casos, usando o Prophet e as técnicas discutidas nesse notebook, atualizado semanalmente. Divulgar os resultados em alguma mídia. 
+- Analisar o impacto da covid nos diversos setores econômicos. 
+- Fazer a mesma análise a nível municipal. O município escolhido será Caucaia, minha cidade natal.
+
+Além dos projetos em si, pretendo trabalhar mais nas funções aqui desenvolvidas, para melhorar seus códigos. Dentre as melhorias já planejadas:
+- Criar uma função que plota a aproximação poligonal, tendo como base os pontos de virada identificados pelo SuperTrend.
+- Para as funções que plotam os pontos de virada, criar um hiperparâmetro novo, que receberá uma lista de datas. A função também plotará essas datas junto com os pontos de viradas e será possível comparar os dois conjuntos de datas. Isso será útil, por exemplo, para estudar o impacto do isolamento social. Na lista de datas podemos inserir as datas de início e término dos lockdowns e ver se eles coincidem com algum ponto de virada. 
+- Melhorar o código das funções TR, ATR e SuperTrend, que ainda não estão se comportado como deveriam. 
+
+# Contato
+Deixo aqui meus contatos, caso alguém queira trocar uma ideia sobre o projeto ou sobre ciência de dados em geral. Ou ainda sobre matemática. 
+- [Linkedin](https://www.linkedin.com/in/renan-santos-5a24aa50/)
+- [Github](https://github.com/renanmath)
+- [Canal no YouTube sobre matemática](https://www.youtube.com/channel/UCJqOzdlOTtu4UPJ2cW5RUTw)
+
+
 
