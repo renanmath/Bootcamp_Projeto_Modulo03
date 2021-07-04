@@ -28,12 +28,36 @@ Uma observação muito importante: esses dados foram baixados no dia 21/06/2021,
 
 ## Análise usando Prophet
 Como dito, o projeto foi dividido em dois notebooks principais. Nesse primeiro notebook, foi feita uma análise exploratória dos dados de covid no Ceará e logo em seguida, previsões usando o Prophet. Em termos técnicos, os resultados não foram animadores, haja vista que, no geral, os modelos tiveram péssimas métricas de avaliação com respeito aos dados de teste. Já as métricas dos dados de treino foram ótimas, o que aponta para um overfitting do modelo aos dados de treino. Nesse notebook foi feita uma análise dos hiperparâmetros, a fim de se encontrar os valores que retornariam os melhores r2-scores. Para os casos novos, óbitos novos e suas médias móveis, não foram encontrados bons hiperparâmetros que retornassem boas métricas.
-No entanto, é necessário entender porque o modelo não estava prevendo bem os dados de teste e a resposta era visualmente clara: os dados iniciaram uma tendência de queda que ia na contra-mão das previsões, que apontavam para uma continuação da tendência de alta. Veja nesse gráfico:
-![médias móveis casos novos](![image](https://user-images.githubusercontent.com/83500922/124401014-0c87e000-dcfd-11eb-95d9-0b016dfe6046.png)
-)
+No entanto, é necessário entender porque o modelo não estava prevendo bem os dados de teste e a resposta era visualmente clara: os dados iniciaram uma tendência de queda que ia na contra-mão das previsões, que apontavam para uma continuação da tendência de alta. Veja esses gráficos:
 
-Então, no sentido social, digamos assim, isso foi um bom resultado. Veja, por exemplo, este gráfico:
+![médias móveis casos novos](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/raw/main/imagens/mm_casos_novos_covid.jpg)
 
-![modelo prhophet - média movel casos novos](![image](https://user-images.githubusercontent.com/83500922/124401046-57a1f300-dcfd-11eb-838f-8ddc8f7d314d.png)
-)
+![médias móveis óbitos novos](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/raw/main/imagens/mm_casos_novos.jpg)
+
+Então, no sentido social, digamos assim, isso foi um bom resultado. No entanto, os modelos do Prophet de maneira alguma previram essa queda tão acentuada:
+
+![modelo prhophet - média movel casos novos](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/raw/main/imagens/prophet_mm_casos_novos.jpg)
+
+O modelo foi treinado com os dados em preto. Os pontinhos em vermelho são os dados de teste. Note como alguns deles saiem, inclusive, do intervalo de confiança. 
+
+Em resumo, as conclusões desse notebook foram:
+
+**Houve picos de casos novos em Julho de 2020 e Maio de 2020**
+
+No entanto, esses picos tem ordens de grande distinto. Enquanto que em 2020 chegamos na casa dos 2 mil novos casos diários, em 2021 essa máxima foi quebrada e mais que dobrada, para mais de 4 mil novos casos diários. Isso é visível nos gráficos postados acima.
+
+**Houve picos de óbitos novos em Junho/Julho de 2020 e Abril/Maio de 2020**
+
+Mas ao contrário do que aconteceu com os casos novos, os picos de óbitos novos tiveram a mesma ordem de grandeza, na casa dos 120 óbitos novos diários. O que explica essa diferença? Levanto duas hipóteses:
+- Melhora na eficiencia dos tratamentos.
+- Em termos relativos, os óbitos novos diários são pequenos em comparação com os casos novos diários, o dificutaria uma correlação mais alta entre as duas variáveis. E com efeito, ao estudarmos a função de correlação cruzada entre as duas variáveis, vimos que a correlação máxima é de apenas 0.54, que é pouco significativa.
+- Outros fatores biológicos, técnicos, e\ou socioeconômicos podem estar envolvidos, como por exemplo:
+  - Taxa de mortalidade de variantes distintas do vírus
+  - Inconsistência na coleta/processamento nos dados
+  - Faixas etárias e classes da população afetada
+
+**Os casos e óbitos novos (diários e semanais) estão em tendência de queda, nas últimas seis semanas**
+
+Isso é visível pelos gráficos dos valores absolutos. No entanto, essa queda pode ter sido breve, visto que podemos estar vivenciando um novo período de aumento. É preciso observar os dados das próximas semanas. 
+Mas a queda recente é inegável e inesperada, em termos puramente de dados brutos: os modelos preditivos do Prophet não foram capazes de prever essa queda repentina. De acordo com os modelos, era de se esperar que a tendência de aumento vivenciada até seis semanas atrás continuasse. 
 
