@@ -1,6 +1,13 @@
 # Apresentação
 ## Sobre o repositório
 Esse repositório contém o Projeto Final do Módulo 03 do Bootcamp Data Science da Alura: Análise de séries temporais.
+O projeto foi dividido em 4 notebooks:
+- [Extração de dados](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/blob/main/notebooks/Projeto_Bootcamp(Modulo03)_Extra%C3%A7%C3%A3o_dos_dados.ipynb) ----> É feita a extração dos dados de covid no Ceará do bando com os dados de todo o Brasil
+- [Análise com Prophet](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/blob/main/notebooks/Projeto_Bootcamp(Modulo03)_An%C3%A1lise_Prophet.ipynb) ---> Fazemos a análise de séries temporais usando Facebook Prophet
+- [Análise de tendências](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/blob/main/notebooks/Projeto_Bootcamp(Modulo03)_An%C3%A1lise_de_tend%C3%AAncias.ipynb) ----> Usamos algumas ferramentas para fazer um estudo de tendências e pontos de virada.
+- [Melhores hiperparâmetros](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/blob/main/notebooks/Projeto_Bootcamp(Modulo03)_Melhores_hiperpar%C3%A2metros.ipynb) ----> Notebook auxiliar, para encontrar os melhores hiperparâmetros dos modelos do Prophet
+
+Os dados utilizados se encontram nessa [pasta](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/tree/main/dados).
 
 ## Sobre o Módulo 03
 O objetivo desse módulo foi conhecer mais sobre séries temporais. Foi apresentado o Prophet, uma ferramenta desenvolvida pelo Facebook para análise de séries temporais. O módulo foi estruturado em 6 aulas:
@@ -21,9 +28,10 @@ O objetivo desse projeto é fazer uma análise de séries temporais relacionadas
 -  Óbitos acumulados por covid
 
 
-A análise será dividida em dois momentos. Na primeira parte, feita neste notebook, usarem o Prophet, uma biblioteca desenvolvida pelo Facebook, para análise e previsões de séries temporais. Exploraremos alguns de seus recursos, como identificação de sazonalidade, feriadados e pontos de virada. Também usaremos métricas para mensurar a precisão das previsões feitas pelo Prophet.
-Na segunda parte faremos uma análise mais minuciosa das tendências em séries temporais, utilizando técnicas para identificar pontos de virada e tendências de crescimento e decrescimento. Para isso exploraremos conceitos como derivadas discretas, indicador supertrend e cruzamento de médias móveis, bem como o uso de aproximações poligonais. Isso será feito em um segundo notebook, confira o [repositório do projeto do Github](https://github.com/renanmath/Bootcamp_Projeto_Modulo03).
-Os dados utilizados foram baixados do site [Brasil.io](https://brasil.io/dataset/covid19/caso_full/) e tratados em um notebook separado (veja o [repositório do projeto](https://github.com/renanmath/Bootcamp_Projeto_Modulo03)). Eles foram salvos em formato csv e foi feito o upload para esta [pasta do repositório](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/tree/main/dados). 
+A análise será dividida em dois momentos. Na primeira parte, feita neste [notebook](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/blob/main/notebooks/Projeto_Bootcamp(Modulo03)_An%C3%A1lise_Prophet.ipynb), usando o Prophet, uma biblioteca desenvolvida pelo Facebook, para análise e previsões de séries temporais. Exploraremos alguns de seus recursos, como identificação de sazonalidade, feriadados e pontos de virada. Também usaremos métricas para mensurar a precisão das previsões feitas pelo Prophet.
+Na segunda parte, que se encontra nesse [notebook](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/blob/main/notebooks/Projeto_Bootcamp(Modulo03)_An%C3%A1lise_de_tend%C3%AAncias.ipynb), faremos uma análise mais minuciosa das tendências em séries temporais, utilizando técnicas para identificar pontos de virada e tendências de crescimento e decrescimento. Para isso exploraremos conceitos como derivadas discretas, indicador supertrend e cruzamento de médias móveis, bem como o uso de aproximações poligonais. Isso será feito em um segundo notebook, confira o [repositório do projeto do Github](https://github.com/renanmath/Bootcamp_Projeto_Modulo03).
+Os dados utilizados foram baixados do site [Brasil.io](https://brasil.io/dataset/covid19/caso_full/) e tratados em um [notebook separado](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/blob/main/notebooks/Projeto_Bootcamp(Modulo03)_Extra%C3%A7%C3%A3o_dos_dados.ipynb). Eles foram salvos em formato csv e foi feito o upload para esta [pasta do repositório](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/tree/main/dados). 
+
 Uma observação muito importante: esses dados foram baixados no dia 21/06/2021, e portanto toda a análise aqui feita está atrasada em duas semanas. Preferi manter assim, e posteriormente fazer uma análise com dados atualizados em outro projeto, pois o objetivo principal desse projeto é explorar as ferramentas de análise de séries temporais. Em um projeto futuro, poderemos comparar as previsões e conclusões feitas aqui, e confrontá-las com a realidade. 
 
 ## Análise usando Prophet
