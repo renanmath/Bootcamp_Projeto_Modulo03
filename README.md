@@ -10,7 +10,7 @@ O projeto foi dividido em 4 notebooks:
 Os dados utilizados se encontram nessa [pasta](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/tree/main/dados).
 
 ## Sobre o Módulo 03
-O objetivo desse módulo foi conhecer mais sobre séries temporais. Foi apresentado o Prophet, uma ferramenta desenvolvida pelo Facebook para análise de séries temporais. O módulo foi estruturado em 6 aulas:
+O objetivo desse módulo foi conhecer mais sobre séries temporais. Foi apresentado o Prophet, uma ferramenta desenvolvida pelo Facebook para análise de séries temporais. O módulo foi estruturado em 5 aulas:
 - Entendendo a série temporal
 - Primeiras previsões
 - Mudança de tendência
@@ -26,6 +26,8 @@ O objetivo desse projeto é fazer uma análise de séries temporais relacionadas
 -  Casos acumulados de covid
 -  Óbitos novos por covid
 -  Óbitos acumulados por covid
+
+Esse projeto tem um caráter mais técnico e serão utilizados alguns conceitos mais profundos de matemática do que o que foi trabalhado nos projetos dos módulos anteriores. 
 
 
 A análise será dividida em dois momentos. Na primeira parte, feita neste [notebook](https://github.com/renanmath/Bootcamp_Projeto_Modulo03/blob/main/notebooks/Projeto_Bootcamp(Modulo03)_An%C3%A1lise_Prophet.ipynb), usando o Prophet, uma biblioteca desenvolvida pelo Facebook, para análise e previsões de séries temporais. Exploraremos alguns de seus recursos, como identificação de sazonalidade, feriadados e pontos de virada. Também usaremos métricas para mensurar a precisão das previsões feitas pelo Prophet.
